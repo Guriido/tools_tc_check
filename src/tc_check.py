@@ -1,5 +1,7 @@
 
-keys = ['in', 'out', 'break-start', 'break-end', 'total', 'over_midnight', 'paid-holiday', 'sick-leave', 'holiday']
+keys = ['in', 'out', 'break-start', 'break-end', 'total', 'over_midnight',
+        'paid-holiday', 'sick-leave', 'business-trip',
+        'season-holiday', 'replacement-off', 'compensatory-off', 'holiday']
 
 
 def tc_to_dict(string):
@@ -36,6 +38,14 @@ def had_to_work(date, dico_day):
     elif 'paid-holiday' in dico_day.keys() and dico_day['paid-holiday'] == 'yes':
         return False
     elif 'sick-leave' in dico_day.keys() and dico_day['sick-leave'] == 'yes':
+        return False
+    elif 'season-holiday' in dico_day.keys() and dico_day['season-holiday'] == 'yes':
+        return False
+    elif 'business-trip' in dico_day.keys() and dico_day['business-trip'] == 'yes':
+        return True  # business-trip sets total to '8:00'
+    elif 'replacement-off' in dico_day.keys() and dico_day['replacement-off'] == 'yes':
+        return False
+    elif 'compensatory-off' in dico_day.keys() and dico_day['compensatory-off'] == 'yes':
         return False
     elif 'holiday' in dico_day.keys() and dico_day['holiday'] != '':
         return False
