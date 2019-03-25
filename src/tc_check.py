@@ -62,8 +62,12 @@ def check_valid(dico):
             if had_to_work(date, dico[date]):
                 print('input error for {}'.format(date))
         else:
-            due_dates += 1
-            due_time += 8*60 - oclock_to_minutes(dico[date]['total'])
+            if had_to_work(date, dico[date]):
+                # overtime, not counted in due date
+                pass
+            else:
+                due_dates += 1
+                due_time += 8*60 - oclock_to_minutes(dico[date]['total'])
     print('due_time {} (if negative or zero: OK!)'.format(minutes_to_oclock(due_time)))
 
 
