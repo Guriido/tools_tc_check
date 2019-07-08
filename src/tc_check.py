@@ -47,7 +47,7 @@ def had_to_work(date, dico_day):
         return False
     elif 'compensatory-off' in dico_day.keys() and dico_day['compensatory-off'] == 'yes':
         return False
-    elif 'holiday' in dico_day.keys() and dico_day['holiday'] != '':
+    elif 'holiday' in dico_day.keys() and dico_day['holiday'].strip() != '':
         return False
     else:
         return True
@@ -62,9 +62,9 @@ def check_valid(dico):
             if had_to_work(date, dico[date]):
                 print('input error for {}'.format(date))
         else:
-            if had_to_work(date, dico[date]):
+            if not had_to_work(date, dico[date]):
                 # overtime, not counted in due date
-                pass
+                print('worked during holiday on {}'.format(date))
             else:
                 due_dates += 1
                 due_time += 8*60 - oclock_to_minutes(dico[date]['total'])
