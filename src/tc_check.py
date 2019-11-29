@@ -1,7 +1,7 @@
 
 keys = ['in', 'out', 'break-start', 'break-end', 'total', 'over_midnight',
         'paid-holiday', 'sick-leave', 'business-trip',
-        'season-holiday', 'replacement-off', 'compensatory-off', 'holiday']
+        'season-holiday', 'replacement-off', 'compensatory-off', 'holiday', 'request-work']
 
 
 def tc_to_dict(string):
@@ -9,8 +9,8 @@ def tc_to_dict(string):
     dict_dates = dict()
     for line in string.split('\n')[1:]:
         if line.split('|')[0].strip() == '':
-            # last line for total, break
-            break
+            # line can be skipped
+            continue
         line_dict = dict()
         for i, item in enumerate(line.split('|')[1:]):
             line_dict[local_keys[i]] = item.strip()
@@ -57,6 +57,8 @@ def check_valid(dico):
     due_dates = 0
     due_time = 0
     for date in sorted(list(dico.keys())):
+        if date == '':
+            continue
         if dico[date]['total'] == '':
             # check if had to work
             if had_to_work(date, dico[date]):
