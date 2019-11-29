@@ -5,14 +5,14 @@ def create_bash_script(python_file_name, script_file_name):
     src_path = os.path.dirname(os.path.realpath(__file__))
     script_path = os.path.join(os.path.realpath(os.path.join(src_path, os.pardir)), script_file_name)
     file_path = os.path.join(src_path, python_file_name)
-    bash_sctipt_string= "#!/usr/bin/env bash" \
+    bash_script_string = "#!/usr/bin/env bash" \
                         "\n" \
                         "\nstr=\"$*\"" \
                         "\n" \
                         "\npython3 {} \"$str\"".format(file_path)
-    # print(bash_sctipt_string)
+    # print(bash_script_string)
     with open(script_path, 'x') as f:
-        f.write(bash_sctipt_string)
+        f.write(bash_script_string)
     return script_path
 
 
