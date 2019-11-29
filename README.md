@@ -1,4 +1,4 @@
-# tools_tc_ckeck
+# tools_tc_check
 Checks output of timecard 
 creates a tool to check timecard from clipboard
 
@@ -9,14 +9,14 @@ creates a tool to check timecard from clipboard
 ## Installation
 
 ```
-$ git clone https://github.com/Guriido/tools_tc_ckeck.git
+$ git clone https://github.com/Guriido/tools_tc_check.git
 
 $ cd tools_tc_check
 $ python3 src/tc_setup.py
 
 ```
 
-This will create a bash script `tc_check.sh` in `tools_tc_ckeck` folder.
+This will create a bash script `tc_check.sh` in `tools_tc_check` folder.
 
 ## Use
 
